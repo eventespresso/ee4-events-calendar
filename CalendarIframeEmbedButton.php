@@ -13,7 +13,7 @@ defined( 'ABSPATH' ) || exit;
  *
  * @package       Event Espresso
  * @author        Brent Christensen
- * @since         $VID:$
+ * 
  */
 class CalendarIframeEmbedButton extends IframeEmbedButton
 {
