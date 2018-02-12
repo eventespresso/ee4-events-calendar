@@ -5,7 +5,7 @@
 </select><br/>
 <div id="color-picker-options" style='display:none'>
 	<label for="category-background-color-for-calendar"><?php _e("Background Color",'event_espresso')?></label><br/>
-	<input type="text" class="category-color-picker" id="category-background-color-for-calendar" name="category-background-color-for-calendar" style="display:none" data-default-color="<?php echo $default_background_color?>" value="<?php echo $background_color?>"><br/>
+	<input type="text" class="category-color-picker" id="category-background-color-for-calendar" name="category-background-color-for-calendar" data-default-color="<?php echo $default_background_color?>" value="<?php echo $background_color?>"><br/>
 	<label for="category-text-color-for-calendar"><?php _e("Text Color", "event_espresso");?></label><br/>
-	<input type="text" class="category-color-picker" id="category-text-color-for-calendar" name='category-text-color-for-calendar' style="display:none" data-default-color="<?php echo $default_text_color?>" value="<?php echo $text_color?>">
+	<input type="text" class="category-color-picker" id="category-text-color-for-calendar" name='category-text-color-for-calendar' data-default-color="<?php echo $default_text_color?>" value="<?php echo $text_color?>">
 </div>
