@@ -161,16 +161,26 @@ class EEW_Espresso_Calendar extends WP_Widget {
 				 /** @var $before_widget string */
 				 echo $before_widget;
 				// Title of widget (before and after defined by themes).
-				 $title = apply_filters( 'widget_title', $instance['title'] );
-				if ( ! empty( $title )) {
+				if ( ! empty( $instance['title'] ) ) {
+				 	$title = apply_filters( 'widget_title', $instance['title'] );
+					if ( ! empty( $title )) {
 					/** @var $before_title string */
 					/** @var $after_title string */
 					echo $before_title . $title . $after_title;
+					}
+				}
+				$category_id = '';
+				if ( ! empty( $instance['category_id'] ) ) {
+					$category_id = $instance['category_id'];
+				}
+				$show_expired = FALSE;
+				if ( ! empty( $instance['show_expired'] ) ) {
+					$show_expired = $instance['show_expired'];
 				}
 				// settings
 				$attributes = array(
-					'event_category_id' => $instance['category_id'],
-					'show_expired' => $instance['show_expired'],
+					'event_category_id' => $category_id,
+					'show_expired' => $show_expired,
 					'cal_view' => 'month',
 					'header_left' => 'prev',
 					'header_center' => 'title',
