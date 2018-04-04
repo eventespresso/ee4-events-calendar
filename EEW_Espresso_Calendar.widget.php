@@ -173,7 +173,7 @@ class EEW_Espresso_Calendar extends WP_Widget {
 				if ( ! empty( $instance['category_id'] ) ) {
 					$category_id = $instance['category_id'];
 				}
-				$show_expired = FALSE;
+				$show_expired = false;
 				if ( ! empty( $instance['show_expired'] ) ) {
 					$show_expired = $instance['show_expired'];
 				}
