@@ -20,7 +20,7 @@ class EEW_Espresso_Calendar extends WP_Widget {
 		parent::__construct(
 			'ee-calendar-widget',
 			__( 'Event Espresso Calendar Widget', 'event_espresso' ),
-			 array(
+			array(
 			 	'description' => __( 'Displays the Espresso Calendar in a widget.', 'event_espresso' )
 			 ),
 			array(
@@ -153,24 +153,34 @@ class EEW_Espresso_Calendar extends WP_Widget {
 		if ( isset( $post->post_content )) {
 			 if ( strpos( $post->post_content, '[ESPRESSO_CALENDAR') === FALSE ) {
 				$is_espresso_calendar = TRUE;
-				 // load scripts
-				 wp_enqueue_style( 'fullcalendar' );
-				 wp_enqueue_style( 'espresso_calendar' );
-				 wp_enqueue_script( 'espresso_calendar' );
-				 // Before widget (defined by themes).
-				 /** @var $before_widget string */
-				 echo $before_widget;
+				// load scripts
+				wp_enqueue_style( 'fullcalendar' );
+				wp_enqueue_style( 'espresso_calendar' );
+				wp_enqueue_script( 'espresso_calendar' );
+				// Before widget (defined by themes).
+				/** @var $before_widget string */
+				echo $before_widget;
 				// Title of widget (before and after defined by themes).
-				 $title = apply_filters( 'widget_title', $instance['title'] );
-				if ( ! empty( $title )) {
-					/** @var $before_title string */
-					/** @var $after_title string */
-					echo $before_title . $title . $after_title;
+				if ( ! empty( $instance['title'] ) ) {
+				 	$title = apply_filters( 'widget_title', $instance['title'] );
+					if ( ! empty( $title )) {
+						/** @var $before_title string */
+						/** @var $after_title string */
+						echo $before_title . $title . $after_title;
+					}
+				}
+				$category_id = '';
+				if ( ! empty( $instance['category_id'] ) ) {
+					$category_id = $instance['category_id'];
+				}
+				$show_expired = false;
+				if ( ! empty( $instance['show_expired'] ) ) {
+					$show_expired = $instance['show_expired'];
 				}
 				// settings
 				$attributes = array(
-					'event_category_id' => $instance['category_id'],
-					'show_expired' => $instance['show_expired'],
+					'event_category_id' => $category_id,
+					'show_expired' => $show_expired,
 					'cal_view' => 'month',
 					'header_left' => 'prev',
 					'header_center' => 'title',
@@ -180,13 +190,13 @@ class EEW_Espresso_Calendar extends WP_Widget {
 					'month' => apply_filters( 'FHEE__EE_Calendar__widget_start_month', date( 'n' ) ),
 					'year' => apply_filters( 'FHEE__EE_Calendar__widget_start_year', date( 'Y' ) ),
 				);
-				 if ( ! EE_Registry::instance()->modules->EED_Espresso_Calendar instanceof EED_Espresso_Calendar ) {
-					 EE_Registry::instance()->modules->EED_Espresso_Calendar = new EED_Espresso_Calendar();
-				 }
+				if ( ! EE_Registry::instance()->modules->EED_Espresso_Calendar instanceof EED_Espresso_Calendar ) {
+					EE_Registry::instance()->modules->EED_Espresso_Calendar = new EED_Espresso_Calendar();
+				}
 				echo EE_Registry::instance()->modules->EED_Espresso_Calendar->display_calendar( $attributes );
 				// After widget (defined by themes).
-				 /** @var $after_widget string */
-				 echo $after_widget;
+				/** @var $after_widget string */
+				echo $after_widget;
 			}
 		}
 	}
