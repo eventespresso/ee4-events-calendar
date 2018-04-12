@@ -481,6 +481,9 @@ class EED_Espresso_Calendar extends EED_Module {
                     __('Fri', 'event_espresso'),
                     __('Sat', 'event_espresso')
             );
+            // featured image thumbnail settings
+            $ee_calendar_js_options['thumbnail_size_w'] = get_option( 'thumbnail_size_w' );
+            $ee_calendar_js_options['thumbnail_size_h'] = get_option( 'thumbnail_size_h' );
             // Get current page protocol
             $protocol = isset($_SERVER["HTTPS"]) ? 'https://' : 'http://';
             // Output admin-ajax.php URL with same protocol as current page

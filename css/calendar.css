@@ -684,7 +684,10 @@ a.reg-now-btn {
 		font-size: 10px;
 	}
 	#espresso_calendar .time-display-block {
-		visibility: hidden;
+		display: none;
+	}
+	#espresso_calendar .fc-event {
+		min-height: 3em;
 	}
 }
 
@@ -698,10 +701,6 @@ a.reg-now-btn {
 	#espresso_calendar .fc-button-agendaWeek,
 	#espresso_calendar .fc-button-today {
 		display: none;
-	}
-	#espresso_calendar .fc-event {
-		min-height: 3em;
-		max-height: 3em;
 	}
 }
 

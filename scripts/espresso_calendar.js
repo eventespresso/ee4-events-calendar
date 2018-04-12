@@ -265,7 +265,7 @@ jQuery(document).ready(function($) {
 			if( event.event_img_thumb && ! eeCAL.widget ){
 				// and actually find it
 				var thumb = element.find('img');
-				// calculate it's height'
+				// calculate its height
 				var thumb_height = thumb.height();
 				// so if the event actually has an image ( events without thumbnails will have a thumb_height of NULL )
 				if ( thumb_height !== null ) {
@@ -275,9 +275,9 @@ jQuery(document).ready(function($) {
 					// multi day events
 					if ( event.event_days > 1 ) {
 						// can usually display the full thumbnail size becuz of their width
-						img_height = parseInt( event.thumbnail_size_h );
+						img_height = parseInt( eeCAL.thumbnail_size_h );
 						// but in case thumbnail is still wider than multi-day table cell
-						if ( parseInt( event.thumbnail_size_h ) > event_width ) {
+						if ( parseInt( eeCAL.thumbnail_size_h ) > event_width ) {
 							// use that as the height
 							img_height = event_width - day_padding;
 						}
