@@ -1,21 +1,27 @@
 {
-  "versionFile": "espresso_calendar.php",
-  "slug": "ee4-events-calendar",
-  "name": "Event Espresso 4 Calendar",
-  "releaseFilesRemove": [
-    "src\/tests\/**",
-    "src\/info.json",
-    "src\/circle.yml",
-    "src\/readme.txt",
-    "src\/.travis.yml"
-  ],
-  "demoee": true,
-  "awsbucket": "",
-  "awsregion": "",
-  "srcBuildFolderName": "eea-calendar",
-  "textDomain": "event_espresso",
-  "wpOrgRelease": "3.2.12.p",
-  "remoteNamesToPushTo": [
-    "demoee"
-  ]
+	"versionFile": "espresso_calendar.php",
+	"slug": "ee4-events-calendar",
+	"name": "Event Espresso 4 Calendar",
+	"jsBuildDirectory": ".\/",
+	"wpi18nJsPotFilePath": ".\/languages\/ee-js.pot",
+	"releaseFilesRemove": [
+		"src\/tests\/**",
+		"src\/acceptance_tests\/**",
+		"src\/info.json",
+		"src\/.travis.yml",
+		"src\/.github\/**",
+		"src\/assets\/src\/**",
+		"src\/eslint\/**",
+		"src\/.babelrc",
+		"src\/.editorconfig",
+		"src\/.eslintignore",
+		"src\/.eslintrc.js",
+		"src\/.nvmrc",
+		"src\/.postcss.config.js"
+	],
+	"srcBuildFolderName": "eea-calendar",
+	"textDomain": "event_espresso",
+	"remoteNamesToPushTo": [
+		"demoee"
+	]
 }
