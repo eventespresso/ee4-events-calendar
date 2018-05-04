@@ -3,12 +3,6 @@ namespace EventEspressoCalendar;
 
 use EventEspresso\core\libraries\iframe_display\Iframe;
 
-if ( ! defined( 'EVENT_ESPRESSO_VERSION' ) ) {
-    exit( 'No direct script access allowed' );
-}
-
-
-
 /**
  * Class CalendarIframe
  * Description
@@ -16,11 +10,10 @@ if ( ! defined( 'EVENT_ESPRESSO_VERSION' ) ) {
  * @package       Event Espresso
  * @subpackage    core
  * @author        Brent Christensen
- * 
+ *
  */
 class CalendarIframe extends Iframe
 {
-
 
 
     /**
@@ -29,18 +22,17 @@ class CalendarIframe extends Iframe
      * @param array $ee_calendar_js_options
      * @throws \DomainException
      */
-    public function __construct( $ee_calendar_js_options = array() )
+    public function __construct($ee_calendar_js_options = array())
     {
         $this->addLocalizedVars(
-            array( 'espresso_calendar' => $ee_calendar_js_options ),
+            array('espresso_calendar' => $ee_calendar_js_options),
             'eeCAL'
         );
         parent::__construct(
-            __( 'Calendar', 'event_espresso' ),
-            \EED_Espresso_Calendar::instance()->display_calendar( array(), false )
+            __('Calendar', 'event_espresso'),
+            \EED_Espresso_Calendar::instance()->display_calendar(array(), false)
         );
     }
-
 
 
     /**
@@ -77,8 +69,4 @@ class CalendarIframe extends Iframe
         );
         parent::display($utm_content);
     }
-
-
 }
-// End of file CalendarIframe.php
-// Location: /eea-calendar/CalendarIframe.php
