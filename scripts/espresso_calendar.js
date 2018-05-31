@@ -1,5 +1,10 @@
 jQuery(document).ready(function($) {
 
+	// Check we have an eeCal object.
+	if (typeof eeCAL === 'undefined') {
+		return;
+	}
+
     /**
      *  @namespace eeCAL
      *  @type  {{
