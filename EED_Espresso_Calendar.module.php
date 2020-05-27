@@ -648,7 +648,7 @@ class EED_Espresso_Calendar extends EED_Module
             }
         }
         // Add private events if the current user can view them.
-        if ( EE_Registry::instance()->CAP->current_user_can('ee_read_private_events', 'get_events')) {
+        if (EE_Registry::instance()->CAP->current_user_can('ee_read_private_events', 'get_events')) {
             $public_event_stati[] = EEM_Event::post_status_private;
         }
         $where_params['Event.status'] = array(
