@@ -692,8 +692,9 @@ class EED_Espresso_Calendar extends EED_Module
             if ($datetime instanceof EE_Datetime) {
                 /* @var $datetime EE_Datetime */
                 $calendar_datetime = apply_filters(
-                        'FHEE__EED_Espresso_Calendar__get_calendar_events__new_datetime_object',
-                        new EE_Datetime_In_Calendar($datetime)
+                    'FHEE__EED_Espresso_Calendar__get_calendar_events__new_datetime_object',
+                    new EE_Datetime_In_Calendar($datetime),
+                    $datetime
                 );
                 //  $this->timer->start();
                 $event = $datetime->event();
