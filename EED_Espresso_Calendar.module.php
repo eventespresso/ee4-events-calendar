@@ -242,7 +242,7 @@ class EED_Espresso_Calendar extends EED_Module
         }
         // core calendar script
         wp_register_script('fullcalendar-min-js', EE_CALENDAR_URL . 'scripts' . DS . 'fullcalendar.min.js', array( 'jquery' ), '1.6.2', true);
-        wp_register_script('espresso_calendar', EE_CALENDAR_URL . 'scripts' . DS . 'espresso_calendar.js', array( 'fullcalendar-min-js' ), EE_CALENDAR_VERSION, true);
+        wp_register_script('espresso_calendar', EE_CALENDAR_URL . 'scripts' . DS . 'espresso_calendar.js', array( 'fullcalendar-min-js', 'wp-hooks' ), EE_CALENDAR_VERSION, true);
 
         // get the current post
         global $post, $is_espresso_calendar;
