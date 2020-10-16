@@ -176,7 +176,7 @@ jQuery(document).ready(function($) {
                 iframe: eeCAL.iframe
 			};
 //			console.log( cal_data );
-			$.ajax({
+			$.ajax( wp.hooks.applyFilters( 'FHEE__EED_Espresso_Calendar__event_ajax_params', {
 				url: eeCAL.ajax_url,
 				dataType: 'json',
 				data: cal_data,
@@ -217,7 +217,7 @@ jQuery(document).ready(function($) {
 				},
 				error: function(response) {
 				}
-			});
+			}));
 		},
 		// A hook for modifying a day cell.
 		dayRender: function( date, cell ) {
@@ -305,7 +305,7 @@ jQuery(document).ready(function($) {
 			}
 
 			if ( eeCAL.tooltip_show ) {
-				element.qtip({
+				element.qtip( wp.hooks.applyFilters( 'FHEE__EED_Espresso_Calendar__tooltip_params', {
 					content: {
 						text: event.description + event.tooltip,
 						title: event.title,
@@ -326,7 +326,7 @@ jQuery(document).ready(function($) {
 						classes: event.tooltip_style,
 						widget: true
 					}
-				});
+				}));
 
 			} else {
 				//This displays the title of the event when hovering
@@ -344,6 +344,7 @@ jQuery(document).ready(function($) {
 				$espresso_calendar.fullCalendar( 'refetchEvents' );
 				eeCAL.events_per_day = {};
 			}
+			wp.hooks.doAction('FHEE__EED_Espresso_Calendar__viewRender_action', view, eeCAL);
 		},
 		// viewDestroy : function( view, element ) {
 //			console.log( ' ' );
