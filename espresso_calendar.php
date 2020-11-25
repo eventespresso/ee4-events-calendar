@@ -99,7 +99,7 @@ function espresso_calendar_activation_error()
                 ),
                 EE_CORE_VERSION_REQUIRED
             );
-        ?>
+            ?>
         </p>
     </div>
     <?php

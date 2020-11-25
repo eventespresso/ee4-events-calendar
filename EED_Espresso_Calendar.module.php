@@ -329,14 +329,14 @@ class EED_Espresso_Calendar extends EED_Module
                     <select id="ee-category-submit" class="submit-this ee-category-select" name="event_category_id">
                     <option id="option" class="ee_select" value=""><?php echo __('Select a Category', 'event_espresso'); ?></option>
                     <option class="ee_filter_show_all" value=""><?php echo __('Show All', 'event_espresso'); ?></option>
-                    <?php
-                    foreach ($ee_terms as $term) {
-                        if ($term instanceof EE_Term) {
-                            $selected = in_array($ee_calendar_js_options['event_category_id'], array( $term->slug(), $term->ID() )) ? 'selected="selected"' : '';
-                            echo '<option ' . $selected . ' value="' . $term->slug() . '">' . $term->name() . '</option>';
+                        <?php
+                        foreach ($ee_terms as $term) {
+                            if ($term instanceof EE_Term) {
+                                $selected = in_array($ee_calendar_js_options['event_category_id'], array( $term->slug(), $term->ID() )) ? 'selected="selected"' : '';
+                                echo '<option ' . $selected . ' value="' . $term->slug() . '">' . $term->name() . '</option>';
+                            }
                         }
-                    }
-                    ?>
+                        ?>
                     </select>
                     <?php }?>
 
@@ -345,13 +345,13 @@ class EED_Espresso_Calendar extends EED_Module
                     <select id="ee-venue-submit" class="submit-this ee-venue-select" name="event_venue_id">
                     <option class="ee_select" value=""><?php echo __('Select a Venue', 'event_espresso'); ?></option>
                     <option class="ee_filter_show_all" value=""><?php echo __('Show All', 'event_espresso'); ?></option>
-                    <?php
-                    foreach ($venues as $venue) {
-                        if ($venue instanceof EE_Venue && $venue->status() === 'publish') {
-                            $selected = in_array($ee_calendar_js_options['event_venue_id'], array( $venue->identifier(), $venue->ID() )) ? ' selected="selected"' : '';
-                            echo '<option' . $selected . ' value="' . $venue->identifier() . '">' . stripslashes($venue->name()) . '</option>';
-                        }
-                    }?>
+                        <?php
+                        foreach ($venues as $venue) {
+                            if ($venue instanceof EE_Venue && $venue->status() === 'publish') {
+                                $selected = in_array($ee_calendar_js_options['event_venue_id'], array( $venue->identifier(), $venue->ID() )) ? ' selected="selected"' : '';
+                                echo '<option' . $selected . ' value="' . $venue->identifier() . '">' . stripslashes($venue->name()) . '</option>';
+                            }
+                        }?>
                     </select>
                     <?php }?>
                     </form>

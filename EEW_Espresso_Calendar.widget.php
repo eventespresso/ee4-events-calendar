@@ -117,7 +117,7 @@ class EEW_Espresso_Calendar extends WP_Widget
             </span>
         </p>
 
-<?php
+        <?php
     }
 
 
