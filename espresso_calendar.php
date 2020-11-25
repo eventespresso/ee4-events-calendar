@@ -39,6 +39,7 @@
 define('EE_CORE_VERSION_REQUIRED', '4.3.0.p');
 define('EE_CALENDAR_VERSION', '3.2.14.rc.001');
 define('EE_CALENDAR_PLUGIN_FILE', __FILE__);
+
 function load_espresso_calendar_class()
 {
     // check for duplicate copy of Calendar addon
