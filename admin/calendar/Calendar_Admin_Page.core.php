@@ -284,7 +284,7 @@ class Calendar_Admin_Page extends EE_Admin_Page
         $sanitization_method = null;
         if (isset($sanitization_methods[ $top_level_key ]) &&
                 $second_level_key === null &&
-                ! is_array($sanitization_methods[ $top_level_key ]) ) {
+                ! is_array($sanitization_methods[ $top_level_key ])) {
             $sanitization_method = $sanitization_methods[ $top_level_key ];
         } elseif (is_array($sanitization_methods[ $top_level_key ]) && isset($sanitization_methods[ $top_level_key ][ $second_level_key ])) {
             $sanitization_method = $sanitization_methods[ $top_level_key ][ $second_level_key ];
