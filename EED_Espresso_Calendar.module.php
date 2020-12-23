@@ -678,6 +678,17 @@ class EED_Espresso_Calendar extends EED_Module
         );
         /* @var $datetime_objs EE_Datetime[] */
 
+        $datetime_objs = apply_filters(
+            'FHEE__EED_Espresso_Calendar__get_calendar_events__query_results',
+            $datetime_objs,
+            $category_id_or_slug,
+            $venue_id_or_slug,
+            $public_event_stati,
+            $start_date,
+            $end_date,
+            $show_expired
+        );
+
         //  $this->timer->stop();
         //  echo $this->timer->get_elapse( __LINE__ );
 
@@ -873,7 +884,9 @@ class EED_Espresso_Calendar extends EED_Module
 
                 $calendar_datetime = apply_filters('FHEE__EE_Calendar__get_calendar_events__calendar_datetime', $calendar_datetime, $datetime);
 
-                $calendar_datetimes_for_json [] = $calendar_datetime->to_array_for_json();
+                if ($calendar_datetime instanceof EE_Datetime_In_Calendar) {
+                    $calendar_datetimes_for_json [] = $calendar_datetime->to_array_for_json();
+                }
 
                 //          $this->timer->stop();
                 //          echo $this->timer->get_elapse( __LINE__ );
