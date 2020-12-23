@@ -880,7 +880,7 @@ class EED_Espresso_Calendar extends EED_Module
 
                 $calendar_datetime = apply_filters('FHEE__EE_Calendar__get_calendar_events__calendar_datetime', $calendar_datetime, $datetime);
 
-                if ($calendar_datetime instanceof EE_Datetime_In_Calendar) { 
+                if ($calendar_datetime instanceof EE_Datetime_In_Calendar) {
                     $calendar_datetimes_for_json [] = $calendar_datetime->to_array_for_json();
                 }
 
