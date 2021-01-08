@@ -205,7 +205,7 @@ jQuery(document).ready(function($) {
 						// look for event thumbnail
 						var thumb = $(element.event_img_thumb).find('img');
 						// attempt to load image
-						$( thumb ).on("load", function() {
+						$( thumb ).on('load', function() {
 							// copy image into container so that the browser is forced to d/l image
 							$('#espresso_calendar_images').append(thumb);
 							// then hide it immediately ( also remove the id attribute so as not to conflict with image used in the actual calendar )
