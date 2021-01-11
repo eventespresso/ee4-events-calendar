@@ -46,6 +46,7 @@ class CalendarIframe extends Iframe
      */
     public function display($utm_content = 'events_calendar')
     {
+        global $wp_version;
         $this->addStylesheets(
             apply_filters(
                 'FHEE__CalendarIframe__display__css',
@@ -60,6 +61,7 @@ class CalendarIframe extends Iframe
             apply_filters(
                 'FHEE__CalendarIframe__display__js',
                 array(
+                    'wp-hooks'            => includes_url('js/dist/hooks.min.js?ver=' . $wp_version),
                     'fullcalendar-min-js' => EE_CALENDAR_URL . 'scripts' . DS . 'fullcalendar.min.js?ver=1.6.2',
                     'espresso_calendar'   => EE_CALENDAR_URL . 'scripts' . DS
                                              . 'espresso_calendar.js?ver=' . EE_CALENDAR_VERSION,
