@@ -131,6 +131,7 @@ if (! class_exists('EE_Calendar_Config')) {
         public $week_mode;
         public $format;
         public $show;
+        public $axis_format;
 
         /**
          *    __construct
@@ -144,6 +145,7 @@ if (! class_exists('EE_Calendar_Config')) {
             $this->week_mode = 'liquid';// fixed, liquid, variable
             $this->format = get_option('time_format');
             $this->show = true;
+            $this->axis_format = 'h:mm a';
         }
     }
 
