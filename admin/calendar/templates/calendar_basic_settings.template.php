@@ -99,6 +99,24 @@
                 </td>
             </tr>
             
+            <tr>
+                <th>
+                    <label>
+                        <?php _e('Axis Settings', 'event_espresso'); ?>
+                    </label>
+                </th>
+                <td>
+                    <?php _e('Axis Time Format', 'event_espresso'); ?>:&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="text" class="medium-text" name="calendar[time][axis_format]" value="<?php echo htmlentities($calendar_config->time->axis_format) ?>"><br />
+                    <span class="description">
+                        <?php _e('Determines the format used when displaying times on the calendar axis', 'event_espresso'); ?>
+                            <a href="https://fullcalendar.io/docs/v1/formatDate">
+                              <?php _e('(See docs for format options)'); ?>
+                            </a>
+                    </span>
+                </td>
+            </tr>
+
         </tbody>
     </table>
     <h4>
