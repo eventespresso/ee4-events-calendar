@@ -118,6 +118,10 @@ jQuery(document).ready(function($) {
 			agenda: 'h:mm a{ - h:mm a}',
 			'' : ''
 		},
+		// Determines the format used for the times shown on the vertical axis 
+		axisFormat:{
+		 	agenda: eeCAL.axis_format,
+		},
 		// Determines the text that will be displayed on the calendar's column headings.
 		columnFormat: {
 			month: eeCAL.column_format_month,
@@ -155,6 +159,8 @@ jQuery(document).ready(function($) {
 		dayNames: eeCAL.day_names,
 		//Abbreviated names of days-of-week.
 		dayNamesShort: eeCAL.day_names_short,
+		//Week view 'all-day' text.
+		allDayText: eeCAL.all_day_text,
 
 		// set initial date view
 		year: eeCAL.year,
