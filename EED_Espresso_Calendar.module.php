@@ -275,7 +275,7 @@ class EED_Espresso_Calendar extends EED_Module
         $output_filter = '';
         if (! $ee_calendar_js_options['widget']) {
             // Query for Select box filters
-            $ee_terms = EEM_Term::instance()->get_all( 
+            $ee_terms = EEM_Term::instance()->get_all(
                 array(
                     'order_by' => array( 'name' => 'ASC' ),
                     array( 'Term_Taxonomy.taxonomy' => 'espresso_event_categories')
