@@ -101,7 +101,7 @@
             
             <tr>
                 <th>
-                    <label>
+                    <label for="calendar[time][axis_format]">
                         <?php _e('Axis Settings', 'event_espresso'); ?>
                     </label>
                 </th>
