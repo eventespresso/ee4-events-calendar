@@ -111,7 +111,7 @@
                     <span class="description">
                         <?php _e('Determines the format used when displaying times on the calendar axis', 'event_espresso'); ?>
                             <a href="https://fullcalendar.io/docs/v1/formatDate">
-                              <?php _e('(See docs for format options)'); ?>
+                              <?php _e('(See docs for format options)', 'event_espresso'); ?>
                             </a>
                     </span>
                 </td>
