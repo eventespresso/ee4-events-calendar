@@ -275,10 +275,19 @@ class EED_Espresso_Calendar extends EED_Module
         $output_filter = '';
         if (! $ee_calendar_js_options['widget']) {
             // Query for Select box filters
-            $ee_terms = EEM_Term::instance()->get_all(array(
-                'order_by' => array( 'name' => 'ASC' ),
-                array( 'Term_Taxonomy.taxonomy' => 'espresso_event_categories',
-            ) ));
+            $ee_terms = EEM_Term::instance()->get_all(
+                array(
+                    'order_by' => array( 'name' => 'ASC' ),
+                    array( 'Term_Taxonomy.taxonomy' => 'espresso_event_categories')
+                )
+            );
+            // Filter the terms
+            $ee_terms = apply_filters(
+                'FHEE__EE_Calendar___get_filter_html__ee_terms',
+                $ee_terms,
+                $ee_calendar_js_options
+            );
+
             $venues = EEM_Venue::instance()->get_all(array( 'order_by' => array( 'VNU_name' => 'ASC' ) ));
 
             if (! empty($venues) || !empty($ee_terms)) {
