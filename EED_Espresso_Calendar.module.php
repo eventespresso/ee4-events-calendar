@@ -487,6 +487,10 @@ class EED_Espresso_Calendar extends EED_Module
                     __('Fri', 'event_espresso'),
                     __('Sat', 'event_espresso')
             );
+            // translate 'all-day' text diplayed by default on week and day views.
+            $ee_calendar_js_options['all_day_text'] = __('all-day', 'event_espresso');
+            // allow for setting the axis time format on the week and day view.
+            $ee_calendar_js_options['axis_format'] = $this->config()->time->axis_format;
             // featured image thumbnail settings
             $ee_calendar_js_options['thumbnail_size_w'] = get_option('thumbnail_size_w');
             $ee_calendar_js_options['thumbnail_size_h'] = get_option('thumbnail_size_h');

@@ -234,7 +234,8 @@ class Calendar_Admin_Page extends EE_Admin_Page
                 'weekends'=>'bool',
                 'week_mode'=>'plaintext',
                 'format'=>'plaintext',
-                'show'=>'bool'),
+                'show'=>'bool',
+                'axis_format'=>'plaintext'),
             'header'=>array(
                 'left'=>'plaintext',
                 'center'=>'plaintext',
