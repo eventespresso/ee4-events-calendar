@@ -14,9 +14,6 @@
  */
 class espresso_events_Calendar_Hooks extends EE_Admin_Hooks
 {
-
-
-
     protected function _set_hooks_properties()
     {
         $this->_name = 'registration_form';
@@ -32,17 +29,17 @@ class espresso_events_Calendar_Hooks extends EE_Admin_Hooks
 
         // hook in the iris color picker
         $this->_scripts_styles = array(
-            'registers'=>array(
-                'category-color-for-calendar'=>array(
-                    'type'=>'js',
-                    'url'=>EE_CALENDAR_ADMIN_ASSETS_URL.'category-color-for-calendar.js',
-                    'depends'=>array('wp-color-picker')
+            'registers' => array(
+                'category-color-for-calendar' => array(
+                    'type' => 'js',
+                    'url' => EE_CALENDAR_ADMIN_ASSETS_URL . 'category-color-for-calendar.js',
+                    'depends' => array('wp-color-picker')
                 )
                 // note: right now we don't have a custom css style, but we DO want the iris styles,
                 // so for that we just override the parent enqueue_scripts_styles to add the style
             ),
-            'enqueues'=>array(
-                'category-color-for-calendar'=>array('edit_category','add_category')
+            'enqueues' => array(
+                'category-color-for-calendar' => array('edit_category','add_category')
             )
         );
     }

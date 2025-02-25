@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Event Espresso
  *
@@ -7,8 +8,8 @@
  * @ package            Event Espresso
  * @ author         Seth Shoultes
  * @ copyright      (c) 2008-2011 Event Espresso  All Rights Reserved.
- * @ license            http://eventespresso.com/support/terms-conditions/   * see Plugin Licensing *
- * @ link               http://www.eventespresso.com
+ * @ license            https://eventespresso.com/support/terms-conditions/   * see Plugin Licensing *
+ * @ link               https://www.eventespresso.com
  * @ version            4.0
  *
  * ------------------------------------------------------------------------
@@ -24,7 +25,6 @@
  */
 class EE_Datetime_In_Calendar
 {
-
     /**
      * @var EE_Event $_Event
      */
@@ -362,41 +362,44 @@ class EE_Datetime_In_Calendar
             ? $this->_event->name() . ': ' . $this->_datetime->name()
             : $this->_event->name();
         return array(
-            'allDay'=>false,
-            'className'=>$this->classname(),
-            'color'=>$this->color(),
-            'end'=>$this->_datetime->end_date('c'),
-            'event_days'=>$this->_datetime->length('days', true),
-            'event_time'=>$this->event_time(),
-            'event_time_no_tags'=>$this->event_time_no_tags(),
-            'event_img_thumb'=>$this->event_img_thumb(),
-            'eventType'=>$this->eventType(),
-            'description'=>apply_filters(
+            'allDay' => false,
+            'className' => $this->classname(),
+            'color' => $this->color(),
+            'end' => $this->_datetime->end_date('c'),
+            'event_days' => $this->_datetime->length('days', true),
+            'event_time' => $this->event_time(),
+            'event_time_no_tags' => $this->event_time_no_tags(),
+            'event_img_thumb' => $this->event_img_thumb(),
+            'eventType' => $this->eventType(),
+            'description' => apply_filters(
                 'FHEE__EE_Datetime_In_Calendar__to_array_for_json__description',
                 $this->description(),
                 $this
             ),
-            'id'=>$this->_event->ID(),
-            'show_tooltips'=>$this->show_tooltips(),
-            'start'=>$this->_datetime->start_date('c'),
-            'target_date'=>$this->_datetime->start_date('Y-m-d'),
-            'textColor'=>$this->textColor(),
-            'tooltip'=>$this->tooltip(),
-            'tooltip_my'=>$this->tooltip_my(),
-            'tooltip_at'=>$this->tooltip_at(),
-            'tooltip_style'=>$this->tooltip_style(),
-            'title'=>apply_filters(
+            'id' => $this->_event->ID(),
+            'show_tooltips' => $this->show_tooltips(),
+            'start' => $this->_datetime->start_date('c'),
+            'target_date' => $this->_datetime->start_date('Y-m-d'),
+            'textColor' => $this->textColor(),
+            'tooltip' => $this->tooltip(),
+            'tooltip_my' => $this->tooltip_my(),
+            'tooltip_at' => $this->tooltip_at(),
+            'tooltip_style' => $this->tooltip_style(),
+            'title' => apply_filters(
                 'FHEE__EE_Datetime_In_Calendar__to_array_for_json__title',
                 $title,
                 $this
             ),
             'url' => apply_filters(
                 'FHEE__EE_Datetime_In_Calendar__to_array_for_json__url',
-                $this->_event->get_permalink(),
+                add_query_arg(
+                    [ 'datetime' => $this->_datetime->ID() ],
+                    $this->_event->get_permalink()
+                ),
                 $this->event(),
                 $this
             ),
-            'iframe'=>$this->_iframe,
+            'iframe' => $this->_iframe,
         );
     }
 }

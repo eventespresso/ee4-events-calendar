@@ -1,4 +1,5 @@
 <?php
+
 /**
 * Calendar_Admin_Page_Init class
 *
@@ -12,10 +13,6 @@
 */
 class Calendar_Admin_Page_Init extends EE_Admin_Page_Init
 {
-
-
-
-
     /**
      *      constructor
      *      @Constructor

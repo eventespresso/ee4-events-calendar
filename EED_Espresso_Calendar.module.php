@@ -1,4 +1,5 @@
 <?php
+
 use EventEspressoCalendar\CalendarIframe;
 use EventEspressoCalendar\CalendarIframeEmbedButton;
 
@@ -13,7 +14,6 @@ use EventEspressoCalendar\CalendarIframeEmbedButton;
  */
 class EED_Espresso_Calendar extends EED_Module
 {
-
     /**
      * @var         INT $_event_category_id
      * @access  private
@@ -61,8 +61,8 @@ class EED_Espresso_Calendar extends EED_Module
       */
     public static function set_hooks()
     {
-        EE_Config::register_route('calendar', 'EED_Espresso_Calendar', 'run');
-        EE_Config::register_route('iframe', 'EED_Espresso_Calendar', 'calendar_iframe', 'calendar');
+        EED_Module::registerRoute('calendar', 'EED_Espresso_Calendar', 'run');
+        EED_Module::registerRoute('iframe', 'EED_Espresso_Calendar', 'calendar_iframe', 'calendar');
     }
 
 
@@ -247,7 +247,8 @@ class EED_Espresso_Calendar extends EED_Module
         // get the current post
         global $post, $is_espresso_calendar;
         // check the post content for the short code
-        if ($is_espresso_calendar
+        if (
+            $is_espresso_calendar
             || (
                 isset($post->post_content)
                 && strpos($post->post_content, '[ESPRESSO_CALENDAR') !== false
@@ -305,18 +306,18 @@ class EED_Espresso_Calendar extends EED_Module
                             /*@var $ee_term EE_Term */
                             $catcode = $ee_term->ID();
                             $bg = $ee_term->get_extra_meta('background_color', true, $this->config()->display->event_background);
-                            $fontcolor =$ee_term->get_extra_meta('text_color', true, $this->config()->display->event_text_color);
+                            $fontcolor = $ee_term->get_extra_meta('text_color', true, $this->config()->display->event_text_color);
                             $use_bg = $ee_term->get_extra_meta('use_color_picker', true);
                             $caturl = esc_url(add_query_arg('event_category_id', $ee_term->slug()));
                             if ($use_bg) {
                                 echo '
-							<li id="ee-category-legend-li-'.$catcode.'" class="has-sub" style="background: ' . $bg . ';">
-								<span class="ee-category"><a href="'. $caturl .'#espresso_calendar" style="color: ' . $fontcolor . ';">'.$ee_term->name().'</a></span>
+							<li id="ee-category-legend-li-' . $catcode . '" class="has-sub" style="background: ' . $bg . ';">
+								<span class="ee-category"><a href="' . $caturl . '#espresso_calendar" style="color: ' . $fontcolor . ';">' . $ee_term->name() . '</a></span>
 							</li>';
                             } else {
                                 echo '
-							<li id="ee-category-li-'.$catcode.'" class="has-sub" style="background: #f3f3f3;" >
-								<span class="ee-category"><a href="'. $caturl .'#espresso_calendar">'.$ee_term->name().'</a></span>
+							<li id="ee-category-li-' . $catcode . '" class="has-sub" style="background: #f3f3f3;" >
+								<span class="ee-category"><a href="' . $caturl . '#espresso_calendar">' . $ee_term->name() . '</a></span>
 							</li>';
                             }
                         }
@@ -490,10 +491,8 @@ class EED_Espresso_Calendar extends EED_Module
             // featured image thumbnail settings
             $ee_calendar_js_options['thumbnail_size_w'] = get_option('thumbnail_size_w');
             $ee_calendar_js_options['thumbnail_size_h'] = get_option('thumbnail_size_h');
-            // Get current page protocol
-            $protocol = isset($_SERVER["HTTPS"]) ? 'https://' : 'http://';
             // Output admin-ajax.php URL with same protocol as current page
-            $ee_calendar_js_options['ajax_url'] = admin_url('admin-ajax.php', $protocol);
+            $ee_calendar_js_options['ajax_url'] = admin_url('admin-ajax.php', 'https');
             $this->_js_options = $ee_calendar_js_options;
         }
         return $this->_js_options;
@@ -506,14 +505,18 @@ class EED_Espresso_Calendar extends EED_Module
      *
      * @access public
      * @param array $ee_calendar_js_options
-     * @param bool $localize_vars
+     * @param bool  $localize_vars
      * @return string
      */
-    public function display_calendar(array $ee_calendar_js_options, $localize_vars = true)
+    public function display_calendar(array $ee_calendar_js_options, bool $localize_vars = true): string
     {
         if ($localize_vars) {
             $this->get_calendar_js_options($ee_calendar_js_options);
-            wp_localize_script('espresso_calendar', 'eeCAL', $this->_js_options);
+            if (did_action('wp_enqueue_scripts')) {
+                $this->localizeJs();
+            } else {
+                add_action('wp_enqueue_scripts', [$this, 'localizeJs']);
+            }
         }
         $calendar_class = isset($this->_js_options['widget']) && $this->_js_options['widget']
                 ? 'calendar_widget'
@@ -525,7 +528,8 @@ class EED_Espresso_Calendar extends EED_Module
 	<div style="clear:both;" ></div>
 	<div id="espresso_calendar_images" ></div>';
         $html .= apply_filters('FHEE__EE_Calendar__display_calendar__after', '');
-        if (// this is not an iframe
+        if (
+// this is not an iframe
             ! EED_Espresso_Calendar::$iframe
             // and \EEH_Template::powered_by_event_espresso() is available
             && method_exists('EEH_Template', 'powered_by_event_espresso')
@@ -538,6 +542,15 @@ class EED_Espresso_Calendar extends EED_Module
             );
         }
         return $html;
+    }
+
+
+    /**
+     * @return void
+     */
+    public function localizeJs(): void
+    {
+        wp_localize_script('espresso_calendar', 'eeCAL', $this->_js_options);
     }
 
 
@@ -667,7 +680,7 @@ class EED_Espresso_Calendar extends EED_Module
                 $public_event_stati
             )
         );
-        $where_params['DTT_EVT_start']= array('<=',$end_datetime);
+        $where_params['DTT_EVT_start'] = array('<=',$end_datetime);
         $where_params['DTT_EVT_end'] = array('>=',$start_datetime);
         if ($show_expired == 'false' || $show_expired == false) {
             $where_params['DTT_EVT_end*3'] = array('>=',$today );
@@ -676,7 +689,7 @@ class EED_Espresso_Calendar extends EED_Module
         $datetime_objs = EEM_Datetime::instance()->get_all(
             apply_filters(
                 'FHEE__EED_Espresso_Calendar__get_calendar_events__query_params',
-                array( $where_params, 'order_by'=>array( 'DTT_EVT_start'=>'ASC' ) ),
+                array( $where_params, 'order_by' => array( 'DTT_EVT_start' => 'ASC' ) ),
                 $category_id_or_slug,
                 $venue_id_or_slug,
                 $public_event_stati,
@@ -737,7 +750,7 @@ class EED_Espresso_Calendar extends EED_Module
                 $pswrd_required = post_password_required($event->ID());
                 // Get details about the category of the event
                 if (! $this->config()->display->disable_categories) {
-                     $categories= $event->get_all_event_categories();
+                     $categories = $event->get_all_event_categories();
                     // any term_taxonomies set for this event?
                     if ($categories) {
                         $primary_cat = reset($categories);
@@ -758,7 +771,8 @@ class EED_Espresso_Calendar extends EED_Module
                     }
                 }
 
-                if ($event->is_sold_out() ||
+                if (
+                    $event->is_sold_out() ||
                     $datetime->sold_out() ||
                     $datetime->total_tickets_available_at_this_datetime() === 0
                 ) {
@@ -790,14 +804,26 @@ class EED_Espresso_Calendar extends EED_Module
                 $calendar_datetime->set_event_time($event_time_html);
 
                 // Add thumb to event
-                if ($this->config()->display->enable_calendar_thumbs) {
-                    $thumbnail_url = $event->feature_image_url('thumbnail');
-                    if ($thumbnail_url) {
-                        $calendar_datetime->set_event_img_thumb('
+                if ($this->config()->display->enable_calendar_thumbs && has_post_thumbnail($event->ID())) {
+                    $img_ID = get_post_thumbnail_id($event->ID());
+                    if ($img_ID) {
+                        $featured_img = wp_get_attachment_image_src($img_ID);
+                        if ($featured_img) {
+                            $alt_text = get_post_meta($img_ID, '_wp_attachment_image_alt', true);
+                            $calendar_datetime->set_event_img_thumb(
+                                '
 						<span class="thumb-wrap">
-							<img id="ee-event-thumb-' . $datetime->ID() . '" class="ee-event-thumb" src="' . $thumbnail_url . '" alt="image of ' . $event->name() . '" />
-						</span>');
+                            <img alt="' . esc_attr__($alt_text) . '"
+                                 class="ee-event-thumb"
+                                 height="' . esc_attr__($featured_img[2]) . '"
+                                 id="ee-event-thumb-' . $datetime->ID() . '"
+                                 src="' . esc_attr__($featured_img[0]) . '"
+                                 width="' . esc_attr__($featured_img[1]) . '"
+                            />
+						</span>'
+                            );
                             $calendar_datetime->add_classname('event-has-thumb');
+                        }
                     }
                 }
 
@@ -838,11 +864,12 @@ class EED_Espresso_Calendar extends EED_Module
                             $attendee_limit_text = __('Registrations / Spaces: ', 'event_espresso') . $datetime->sold() . ' / ';
                             $attendee_limit_text .= apply_filters('FHEE__EE_Calendar__tooltip_datetime_available_spaces', $datetime->total_tickets_available_at_this_datetime(), $datetime);
                         }
-                        $tooltip_html .= ' <p class="attendee_limit_qtip">' .$attendee_limit_text . '</p>';
+                        $tooltip_html .= ' <p class="attendee_limit_qtip">' . $attendee_limit_text . '</p>';
                     }
 
                     // reg open
-                    if ($event->is_sold_out()
+                    if (
+                        $event->is_sold_out()
                         || $datetime->sold_out()
                         || $datetime->total_tickets_available_at_this_datetime() === 0
                     ) {
@@ -857,7 +884,10 @@ class EED_Espresso_Calendar extends EED_Module
                         $tooltip_reg_btn_html = '<a class="reg-now-btn" href="';
                         $tooltip_reg_btn_html .= apply_filters(
                             'FHEE__EE_Calendar__tooltip_event_permalink',
-                            $event->get_permalink(),
+                            add_query_arg(
+                                [ 'datetime' => $datetime->ID() ],
+                                $event->get_permalink()
+                            ),
                             $event,
                             $datetime
                         );

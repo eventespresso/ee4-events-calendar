@@ -1,4 +1,5 @@
 <?php
+
 /*
  * ------------------------------------------------------------------------
  *
@@ -12,11 +13,6 @@
  */
 class EES_Espresso_Calendar extends EES_Shortcode
 {
-
-
-
-
-
     /**
      *  set_hooks - for hooking into EE Core, modules, etc
      *
@@ -78,11 +74,10 @@ class EES_Espresso_Calendar extends EES_Shortcode
      * [ESPRESSO_CALENDAR show_expired="true"]
      * [ESPRESSO_CALENDAR event_category_id="your_category_identifier"]
      *
-     * @access    public
-     * @param array $attributes
+     * @param array|string $attributes
      * @return string
      */
-    public function process_shortcode($attributes = array())
+    public function process_shortcode($attributes = []): string
     {
         // make sure $attributes is an array
         $attributes = array_merge(\EED_Espresso_Calendar::getCalendarDefaults(), (array) $attributes);
@@ -123,7 +118,7 @@ class EES_Espresso_Calendar extends EES_Shortcode
                 case is_int($value):
                 case is_float($value):
                     // typical booleans
-                
+
                 case in_array($value, array(true, 'true', '1', 'on', 'yes', false, 'false', '0', 'off', 'no'), true):
                     $attributes[ $key ] = $value;
 
@@ -138,7 +133,7 @@ class EES_Espresso_Calendar extends EES_Shortcode
                     break;
                 default:
                     // only remaining data types are Object and Resource
-                    
+
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       // which are not allowed as shortcode attributes
                     $attributes[ $key ] = null;
 

@@ -5,8 +5,7 @@
  */
 class EE_DMS_Calendar_3_0_0_options extends EE_Data_Migration_Script_Stage
 {
-
-    public function _migration_step($num_items = 50)
+    public function _migration_step($num_items_to_migrate = 50)
     {
         // get teh calendar's config
         if (isset(EE_Config::instance()->addons->EE_Calendar) && EE_Config::instance()->addons->EE_Calendar instanceof EE_Calendar_Config) {
@@ -18,7 +17,7 @@ class EE_DMS_Calendar_3_0_0_options extends EE_Data_Migration_Script_Stage
 
         $items_actually_migrated = 0;
         $old_org_options = get_option('espresso_calendar_options');
-        // the option's name differened depending on the version of the calendar
+        // the option's name differed depending on the version of the calendar
         if (! $old_org_options) {
             $old_org_options = get_option('espresso_calendar_settings');
         }
@@ -45,8 +44,7 @@ class EE_DMS_Calendar_3_0_0_options extends EE_Data_Migration_Script_Stage
     }
     public function _count_records_to_migrate()
     {
-        $count_of_options_to_migrate = count($this->_org_options_we_know_how_to_migrate);
-        return $count_of_options_to_migrate;
+        return count($this->_org_options_we_know_how_to_migrate);
     }
     public function __construct()
     {
@@ -57,13 +55,12 @@ class EE_DMS_Calendar_3_0_0_options extends EE_Data_Migration_Script_Stage
 
     /**
      *
-     * @param type $option_name
-     * @param type $value
+     * @param string $option_name
+     * @param mixed $value
      * @param EE_Calendar_Config $c
      */
-    private function _handle_org_option($option_name, $value, $c)
+    private function _handle_org_option(string $option_name, $value, EE_Calendar_Config $c)
     {
-        /* @var $c EE_Calendar_Config */
         switch ($option_name) {
             case 'header_left':
                 $c->header->left = $value;

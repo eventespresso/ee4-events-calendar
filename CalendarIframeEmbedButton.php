@@ -14,7 +14,6 @@ use EventEspresso\core\libraries\iframe_display\IframeEmbedButton;
  */
 class CalendarIframeEmbedButton extends IframeEmbedButton
 {
-
     /**
      * CalendarIframeEmbedButton constructor.
      */

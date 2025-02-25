@@ -1,4 +1,5 @@
 <?php
+
 if (! class_exists('EE_Calendar_Config')) {
     /**
      *
@@ -14,7 +15,6 @@ if (! class_exists('EE_Calendar_Config')) {
      */
     class EE_Calendar_Config extends EE_Config_Base
     {
-
         /**
          * @var EE_Calendar_Config_Header
          */
@@ -125,7 +125,6 @@ if (! class_exists('EE_Calendar_Config')) {
      */
     class EE_Calendar_Config_Time extends EE_Config_Base
     {
-
         public $first_day;
         public $weekends;
         public $week_mode;
@@ -160,7 +159,6 @@ if (! class_exists('EE_Calendar_Config')) {
      */
     class EE_Calendar_Config_Header extends EE_Config_Base
     {
-
         public $left;
         public $center;
         public $right;
@@ -192,7 +190,6 @@ if (! class_exists('EE_Calendar_Config')) {
      */
     class EE_Calendar_Config_Button_Text extends EE_Config_Base
     {
-
         public $prev;
         public $next;
         public $prev_year;
@@ -234,7 +231,6 @@ if (! class_exists('EE_Calendar_Config')) {
      */
     class EE_Calendar_Config_Tooltip extends EE_Config_Base
     {
-
         public $pos_my_1;
         public $pos_my_2;
         public $pos_at_1;
@@ -272,7 +268,6 @@ if (! class_exists('EE_Calendar_Config')) {
      */
     class EE_Calendar_Config_Title_Format extends EE_Config_Base
     {
-
         public $month;
         public $week;
         public $day;
@@ -304,7 +299,6 @@ if (! class_exists('EE_Calendar_Config')) {
      */
     class EE_Calendar_Config_Column_Format extends EE_Config_Base
     {
-
         public $month;
         public $week;
         public $day;
@@ -338,7 +332,6 @@ if (! class_exists('EE_Calendar_Config')) {
      */
     class EE_Calendar_Config_Display extends EE_Config_Base
     {
-
         public $calendar_height;
         public $enable_calendar_thumbs;
         public $enable_calendar_filters;

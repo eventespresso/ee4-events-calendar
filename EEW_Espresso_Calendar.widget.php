@@ -1,4 +1,5 @@
 <?php
+
 /**
  *  EEW_Espresso_Calendar
  * Displays a month-based espresso_calendar in the sidebar
@@ -10,7 +11,6 @@
  */
 class EEW_Espresso_Calendar extends WP_Widget
 {
-
     /**
      * Register widget with WordPress.
      */
@@ -190,7 +190,7 @@ class EEW_Espresso_Calendar extends WP_Widget
                    'cal_view' => 'month',
                    'header_left' => 'prev',
                    'header_center' => 'title',
-                   'header_right' =>'next',
+                   'header_right' => 'next',
                    'title_format_month' => 'MMM yyyy',
                    'widget' => true,
                    'month' => apply_filters('FHEE__EE_Calendar__widget_start_month', date('n')),

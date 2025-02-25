@@ -1,4 +1,5 @@
 <?php
+
 namespace EventEspressoCalendar;
 
 use EventEspresso\core\libraries\iframe_display\Iframe;
@@ -14,8 +15,6 @@ use EventEspresso\core\libraries\iframe_display\Iframe;
  */
 class CalendarIframe extends Iframe
 {
-
-
     /**
      * CalendarIframe constructor.
      *
